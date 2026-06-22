@@ -1,0 +1,72 @@
+# ===============================================
+# Configuración de Netlify - Proecho
+# ===============================================
+
+# Directorio base del proyecto
+[build]
+  # Comando para construir la aplicación
+  command = "npm run build"
+  
+  # Directorio que contiene los archivos construidos
+  publish = "build"
+  
+  # Variables de entorno para el build
+  environment = { CI = "false" }
+
+# Redirecciones y reescrituras
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers personalizados
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Headers específicos para assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+# Headers para documentos HTML
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Configuración de contexto (producción)
+[context.production]
+  environment = { NODE_ENV = "production", CI = "false" }
+  
+# Configuración de contexto (deploy preview)
+[context."deploy-preview"]
+  command = "npm run build"
+  environment = { NODE_ENV = "development", CI = "false" }
+
+# Configuración de contexto (rama develop)
+[context.develop]
+  command = "npm run build"
+  environment = { NODE_ENV = "development", CI = "false" }
+
+# ===============================================
+# Función lambda para backend (opcional)
+# ===============================================
+# Si necesitas funciones backend, descomenta:
+# [functions]
+#   directory = "netlify/functions"
+#   node_bundler = "esbuild"
+
+# ===============================================
+# Variables de entorno secretas
+# ===============================================
+# Nota: Configura estas variables en el dashboard de Netlify
+# [env]
+#   - REACT_APP_API_URL
+#   - REACT_APP_STRIPE_PUBLIC_KEY

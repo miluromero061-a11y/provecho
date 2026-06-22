@@ -1,0 +1,83 @@
+# Dependencias
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Producción
+/build
+/dist
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.gradle/
+
+# Log files
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# nyc test coverage
+.nyc_output
+
+# Parcel files
+.cache
+dist/
+.parcel-cache
+.parcel-cache/
+
+# Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Certificados
+*.pem
+*.crt
+*.key
+
+# Archivos temporales
+*.tmp
+*.temp
+.tmp/
+
+# Bases de datos locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads
+uploads/
+media/
+
+# Secretos
+secrets/
+.secrets/
